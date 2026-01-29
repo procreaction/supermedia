@@ -437,6 +437,8 @@
             font-size: 0.9rem;
         }
 
+        
+
         .extras-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -807,54 +809,65 @@
     </section>
 
     <section class="section">
-        <h2 class="section-title">Was andere sagen</h2>
-      
-        <div class="testimonials-grid">
-      
-          <!-- Testimonial 1 -->
-          <div class="testimonial-card">
-            <div class="video-wrapper">
-              <iframe 
-                src="https://player.vimeo.com/video/553655585" 
-                frameborder="0"
-                allow="autoplay; fullscreen; picture-in-picture" 
-                allowfullscreen>
-              </iframe>
-            </div>
-            <p class="testimonial-quote">"Mein Ziel war 10 Anfragen, erreicht haben wir 40 Anfragen davon wurden 20 Termine gebucht. Das übertrifft meine Erwartungen..."</p>
-            <p class="testimonial-author">Stephanie Amira</p>
-            <p class="testimonial-role">Lovecore Bodywork, Basel.</p>
-          </div>
-      
-          <!-- Testimonial 2 -->
-          <div class="testimonial-card">
-            <div class="video-wrapper">
-              <iframe 
-                src="https://player.vimeo.com/video/699096313" 
-                frameborder="0"
-                allow="autoplay; fullscreen; picture-in-picture" 
-                allowfullscreen>
-              </iframe>
-            </div>
-            <p class="testimonial-quote">"CHF 20'000 Mehr Umsatz nach 4 Wochen streetwise Video Ads Kampagne... Und Support inklusive? Das war ein No-Brainer."</p>
-            <p class="testimonial-author">Bene</p>
-            <p class="testimonial-role">Powerboat Academy Bootsfahrschule, Basel</p>
-          </div>
-      
-          <!-- Testimonial 3 (MP4 bleibt möglich) -->
-          <div class="testimonial-card">
-            <div class="video-wrapper">
-              <video controls poster="https://via.placeholder.com/640x360/0a0a0a/00ffff?text=Testimonial+3">
-                <source src="YOUR_TESTIMONIAL_3_URL.mp4" type="video/mp4">
-              </video>
-            </div>
-            <p class="testimonial-quote">"Es ist unglaublich: 30 ANFRAGEN in nur einer WOCHE — das ist das beste was mir in den letzten Jahren in Sachen Marketing passiert ist!"</p>
-            <p class="testimonial-author">Benno</p>
-            <p class="testimonial-role">Flussbus AG, Klein-Passagierschiff, Basel</p>
-          </div>
-      
+  <h2 class="section-title">Was andere sagen</h2>
+
+  <div class="testimonials-grid">
+
+    <!-- Testimonial -->
+    <div class="testimonial-card">
+      <div class="video-wrapper" data-vimeo-id="553655585">
+        <div class="video-overlay">
+          <div class="play-button"></div>
         </div>
-      </section>
+        <iframe
+          data-src="https://player.vimeo.com/video/553655585?api=1&background=0&muted=1"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p class="testimonial-quote">"Mein Ziel war 10 Anfragen, erreicht haben wir 40 Anfragen davon wurden 20 Termine gebucht. Das übertrifft meine Erwartungen..."</p>
+      <p class="testimonial-author">Stephanie Amira</p>
+      <p class="testimonial-role">Lovecore Bodywork, Basel.</p>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="video-wrapper" data-vimeo-id="699096313">
+        <div class="video-overlay">
+          <div class="play-button"></div>
+        </div>
+        <iframe
+          data-src="https://player.vimeo.com/video/699096313?api=1&background=0&muted=1"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p class="testimonial-quote">"CHF 20'000 Mehr Umsatz nach 4 Wochen streetwise Video Ads Kampagne... Und Support inklusive? Das war ein No-Brainer."</p>
+      <p class="testimonial-author">Bene</p>
+      <p class="testimonial-role">Powerboat Academy Bootsfahrschule, Basel</p>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="video-wrapper" data-vimeo-id="536276480">
+        <div class="video-overlay">
+          <div class="play-button"></div>
+        </div>
+        <iframe
+          data-src="https://player.vimeo.com/video/536276480?api=1&background=0&muted=1"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p class="testimonial-quote">"Es ist unglaublich: 30 ANFRAGEN in nur einer WOCHE — das ist das beste was mir in den letzten Jahren in Sachen Marketing passiert ist!"</p>
+      <p class="testimonial-author">Benno</p>
+      <p class="testimonial-role">Flussbus AG, Klein-Passagierschiff, Basel</p>
+    </div>
+
+  </div>
+</section>
+
       
 
     <section class="section">
@@ -906,6 +919,7 @@
         <p class="disclaimer">Kein kostenloses Erstgespräch – kein Pitch, einfach nur ganz normal telefonieren und schauen ob es passt...</p>
     </section>
 
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const observer = new IntersectionObserver((entries) => {
@@ -936,6 +950,67 @@
             });
         });
     </script>
+
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const wrappers = document.querySelectorAll('.video-wrapper');
+
+        // Lazy Load
+        const loadObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const wrapper = entry.target;
+                    const iframe = wrapper.querySelector('iframe');
+
+                    if (!iframe.src) {
+                        iframe.src = iframe.dataset.src;
+                        wrapper.classList.add('loaded');
+                    }
+
+                    loadObserver.unobserve(wrapper);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        wrappers.forEach(wrapper => loadObserver.observe(wrapper));
+
+        // Click Play
+        wrappers.forEach(wrapper => {
+            const overlay = wrapper.querySelector('.video-overlay');
+            const iframe = wrapper.querySelector('iframe');
+
+            overlay.addEventListener('click', () => {
+                if (!iframe.src) iframe.src = iframe.dataset.src;
+                const player = new Vimeo.Player(iframe);
+                player.play();
+                wrapper.classList.add('playing');
+            });
+        });
+
+        // Autoplay when visible
+        const autoplayObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const iframe = entry.target.querySelector('iframe');
+                if (!iframe.src) return;
+
+                const player = new Vimeo.Player(iframe);
+
+                if (entry.isIntersecting) {
+                    player.play();
+                    entry.target.classList.add('playing');
+                }   else {
+                    player.pause();
+                    entry.target.classList.remove('playing');
+                }
+            });
+        }, { threshold: 0.6 });
+
+        wrappers.forEach(wrapper => autoplayObserver.observe(wrapper));
+
+    });
+    </script>
+
 
 </body>
 </html>
