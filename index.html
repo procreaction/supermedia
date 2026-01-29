@@ -609,6 +609,51 @@
   opacity: 0.7;
 }
 
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup-box {
+  background: #111;
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 90%;
+  color: white;
+  text-align: center;
+  position: relative;
+  animation: popupFade 0.4s ease;
+}
+
+@keyframes popupFade {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.popup-box input,
+.popup-box textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+.popup-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+
     </style>
 </head>
 <body>
@@ -907,13 +952,13 @@
         <img src="https://d1yei2z3i6k35z.cloudfront.net/2913691/66c7cdf5839be_Mat1.gif" alt="Mat" class="final-image">
         <div class="final-text">
             <p><strong>Bist du bereit?</strong></p>
-            <p>Bereit für eine Website, die mit dir wächst?</p>
+            <p>Bereit für einen Web Auftritt, der mit dir wächst?</p>
             <p>Bereit für Support, der nicht extra kostet?</p>
-            <p>Bereit für einen Partner der dich digital weiterbringt?</p>
-            <p>— anstatt nur einen Service zu verkaufen?</p>
+            <p>Bereit für einen Partner der dich weiterbringt?</p>
+            <p>— anstatt dir nur einen Service zu verkaufen?</p>
         </div>
         <div class="final-buttons">
-            <a href="mailto:deine@email.ch" class="cta-button">Ja, lass uns reden</a>
+            <a href="#" class="cta-button" id="openPopup">Ja, lass uns reden</a>
             <p style="color: #999; margin-top: 1rem;">Oder schreib mir einfach:</p>
             <a href="mailto:deine@email.ch" class="email-link">mailto:mat@streetwise.studio</a>
             <p style="color: #999; font-size: 0.95rem;">Ich antworte persönlich.</p>
@@ -1013,6 +1058,40 @@
     });
     </script>
 
+    <script>
+    const popup = document.getElementById("contactPopup");
+    const openBtn = document.getElementById("openPopup");
+    const closeBtn = document.querySelector(".popup-close");
+    
+    openBtn.addEventListener("click", e => {
+      e.preventDefault();
+      popup.style.display = "flex";
+    });
+    
+    closeBtn.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+    
+    window.addEventListener("click", e => {
+      if (e.target === popup) popup.style.display = "none";
+    });
+    </script>
+    
 
+    <div id="contactPopup" class="popup-overlay">
+        <div class="popup-box">
+            <span class="popup-close">&times;</span>
+            <h2>Lass uns sprechen 🚀</h2>
+            <p>Schreib mir kurz worum es geht und ich melde mich persönlich.</p>
+  
+            <form action="mailto:mat@streetwise.studio" method="post" enctype="text/plain">
+                <input type="text" name="Name" placeholder="Dein Name" required>
+                <input type="email" name="Email" placeholder="Deine Email" required>
+                <textarea name="Nachricht" placeholder="Worum geht’s?" required></textarea>
+                <button type="submit" class="cta-button">Nachricht senden</button>
+            </form>
+        </div>
+    </div>
+  
 </body>
 </html>
