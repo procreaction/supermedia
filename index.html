@@ -546,6 +546,67 @@
                 transform: translateY(-10px);
             }
         }
+
+        .section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 50px;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+}
+
+.testimonial-card {
+  background: #111;
+  border-radius: 16px;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.video-wrapper iframe,
+.video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.testimonial-quote {
+  font-style: italic;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.testimonial-author {
+  font-weight: bold;
+}
+
+.testimonial-role {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
     </style>
 </head>
 <body>
@@ -747,37 +808,54 @@
 
     <section class="section">
         <h2 class="section-title">Was andere sagen</h2>
+      
         <div class="testimonials-grid">
-            
-            <div class="testimonial-card">
-                <video class="testimonial-video" controls poster="https://via.placeholder.com/640x360/0a0a0a/00ffff?text=Testimonial+1">
-                    <source src="https://vimeo.com/553655585" type="video/mp4">
-                </video>
-                <p class="testimonial-quote">""Mein Ziel war 10 Anfragen, erreicht haben wir 40 Anfragen davon wurden 20 Termine gebucht. Das übertrifft meine Erwartungen..."</p>
-                <p class="testimonial-author">Stephanie Amira</p>
-                <p class="testimonial-role">Lovecore Bodywork, Basel.</p>
+      
+          <!-- Testimonial 1 -->
+          <div class="testimonial-card">
+            <div class="video-wrapper">
+              <iframe 
+                src="https://player.vimeo.com/video/553655585" 
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
             </div>
-
-            <div class="testimonial-card">
-                <video class="testimonial-video" controls poster="https://via.placeholder.com/640x360/0a0a0a/00ffff?text=Testimonial+2">
-                    <source src="https://vimeo.com/699096313" type="video/mp4">
-                </video>
-                <p class="testimonial-quote">"CHF 20'000 Mehr Umsatz nach 4 Wochen streetwise Video Ads Kampagne... Und Support inklusive? Das war ein No-Brainer."</p>
-                <p class="testimonial-author">Bene</p>
-                <p class="testimonial-role">Powerboat Academy Bootsfahrschule, Basel</p>
+            <p class="testimonial-quote">"Mein Ziel war 10 Anfragen, erreicht haben wir 40 Anfragen davon wurden 20 Termine gebucht. Das übertrifft meine Erwartungen..."</p>
+            <p class="testimonial-author">Stephanie Amira</p>
+            <p class="testimonial-role">Lovecore Bodywork, Basel.</p>
+          </div>
+      
+          <!-- Testimonial 2 -->
+          <div class="testimonial-card">
+            <div class="video-wrapper">
+              <iframe 
+                src="https://player.vimeo.com/video/699096313" 
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
             </div>
-
-            <div class="testimonial-card">
-                <video class="testimonial-video" controls poster="https://via.placeholder.com/640x360/0a0a0a/00ffff?text=Testimonial+3">
-                    <source src="YOUR_TESTIMONIAL_3_URL.mp4" type="video/mp4">
-                </video>
-                <p class="testimonial-quote">"Es ist unglaublich: 30 ANFRAGEN in nur einer WOCHE — das ist das beste was mir in den letzten Jahren in Sachen Marketing passiert ist!"</p>
-                <p class="testimonial-author">Benno</p>
-                <p class="testimonial-role">Flussbus AG, Klein-Passagierschiff, Basel</p>
+            <p class="testimonial-quote">"CHF 20'000 Mehr Umsatz nach 4 Wochen streetwise Video Ads Kampagne... Und Support inklusive? Das war ein No-Brainer."</p>
+            <p class="testimonial-author">Bene</p>
+            <p class="testimonial-role">Powerboat Academy Bootsfahrschule, Basel</p>
+          </div>
+      
+          <!-- Testimonial 3 (MP4 bleibt möglich) -->
+          <div class="testimonial-card">
+            <div class="video-wrapper">
+              <video controls poster="https://via.placeholder.com/640x360/0a0a0a/00ffff?text=Testimonial+3">
+                <source src="YOUR_TESTIMONIAL_3_URL.mp4" type="video/mp4">
+              </video>
             </div>
-
+            <p class="testimonial-quote">"Es ist unglaublich: 30 ANFRAGEN in nur einer WOCHE — das ist das beste was mir in den letzten Jahren in Sachen Marketing passiert ist!"</p>
+            <p class="testimonial-author">Benno</p>
+            <p class="testimonial-role">Flussbus AG, Klein-Passagierschiff, Basel</p>
+          </div>
+      
         </div>
-    </section>
+      </section>
+      
 
     <section class="section">
         <h2 class="section-title">Und das gibt's dazu</h2>
@@ -822,7 +900,7 @@
         <div class="final-buttons">
             <a href="mailto:deine@email.ch" class="cta-button">Ja, lass uns reden</a>
             <p style="color: #999; margin-top: 1rem;">Oder schreib mir einfach:</p>
-            <a href="mailto:deine@email.ch" class="email-link">mat@streetwise.studio</a>
+            <a href="mailto:deine@email.ch" class="email-link">mailto:mat@streetwise.studio</a>
             <p style="color: #999; font-size: 0.95rem;">Ich antworte persönlich.</p>
         </div>
         <p class="disclaimer">Kein kostenloses Erstgespräch – kein Pitch, einfach nur ganz normal telefonieren und schauen ob es passt...</p>
