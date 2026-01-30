@@ -15,8 +15,8 @@
 }
 
 body {
-    background: var(--bg-dark);
-    color: var(--text-white);
+    background: #0a0a0a;
+    color: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     overflow-x: hidden;
     line-height: 1.6;
@@ -29,8 +29,14 @@ body {
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes popupFade {
@@ -56,7 +62,10 @@ body {
 .hero::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
     animation: pulse 8s ease-in-out infinite;
 }
@@ -76,14 +85,28 @@ body {
     animation: fadeInUp 1s ease-out forwards;
 }
 
-.hero-text span { display: block; margin-bottom: 1rem; }
-.hero-text .highlight { color: var(--accent-cyan); font-weight: 600; }
+.hero-text span {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.hero-text .highlight {
+    color: #00ffff;
+    font-weight: 600;
+}
+
 
 /* --- SECTIONS & TITLES --- */
 .section {
-    padding: 6rem 2rem;
-    max-width: 1400px;
+    /* Abstände: 6rem (~96px) oben/unten, 2rem (~32px) links/rechts */
+    padding: 6rem 2rem; 
+    
+    /* Breite: Ich empfehle 1400px für einen moderneren Look */
+    max-width: 1400px; 
+    
     margin: 0 auto;
+    
+    /* Diese Zeilen sind wichtig für den Einblend-Effekt beim Scrollen */
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.8s ease, transform 0.8s ease;
@@ -95,18 +118,29 @@ body {
 }
 
 .section-title {
+    /* Dynamische Größe: Passt sich zwischen 2rem (Handy) und 3.5rem (Desktop) automatisch an */
     font-size: clamp(2rem, 5vw, 3.5rem);
+    
+    /* Der Abstand nach unten (3rem sind ca. 48-50px) */
     margin-bottom: 3rem;
+    
+    /* Zentrierung */
     text-align: center;
-    background: linear-gradient(135deg, #ffffff 0%, var(--accent-cyan) 100%);
+    
+    /* Der coole Farbverlauf-Effekt */
+    background: linear-gradient(135deg, #ffffff 0%, #00ffff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    
+    /* Sicherheitshalber für Browser, die den Gradient-Text nicht unterstützen */
+    color: #ffffff; 
 }
+
 
 /* --- BUTTONS --- */
 .cta-button {
-    background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-cyan-dark) 100%);
+    background: linear-gradient(135deg, #00ffff 0%, #00cccc 100%);
     color: #0a0a0a;
     padding: 1.2rem 3rem;
     border: none;
@@ -135,22 +169,49 @@ body {
     align-items: center;
 }
 
-@media (min-width: 768px) { .reveal-section { grid-template-columns: 1fr 1fr; } }
+
 
 .video-container {
     position: relative;
     width: 100%;
-    height: 60vh;
+    height: 60vh; /* 60% der Bildschirmhöhe */
     max-height: 700px;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 255, 255, 0.2);
 }
 
-.intro-gif { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-.reveal-text { font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.8; color: var(--text-e0); }
-.reveal-text .highlight { color: var(--accent-cyan); font-weight: 600; }
+
+.intro-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* füllt alles, schneidet ggf. Rand ab */
+    display: block;
+}
+
+.reveal-text {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    line-height: 1.8;
+    color: #e0e0e0;
+}
+
+.reveal-text p {
+    margin-bottom: 1.5rem;
+}
+
+.reveal-text .highlight {
+    color: #00ffff;
+    font-weight: 600;
+}
 
 /* --- PACKAGES --- */
 .packages-grid {
@@ -170,53 +231,405 @@ body {
 }
 
 .package-card.popular {
-    border-color: var(--accent-cyan);
+    border-color: #00ffff;
     transform: scale(1.05);
     box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
 }
 
-.popular-badge {
-    position: absolute; top: -15px; right: 20px;
-    background: var(--accent-cyan); color: #0a0a0a;
-    padding: 0.5rem 1.5rem; border-radius: 20px;
-    font-weight: 600; font-size: 0.9rem;
+.package-card:hover {
+    transform: translateY(-10px);
 }
 
-.package-price { font-size: 3rem; font-weight: 700; color: var(--accent-cyan); }
-.package-price small { font-size: 1.2rem; color: #666; }
+.package-card.popular:hover {
+    transform: scale(1.05) translateY(-10px);
+}
 
-.package-features { list-style: none; margin: 2rem 0; }
-.package-features li { padding: 0.8rem 0; border-bottom: 1px solid #333; color: var(--text-e0); }
-.package-features li:before { content: '✓ '; color: var(--accent-cyan); font-weight: bold; margin-right: 0.5rem; }
+.popular-badge {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: #00ffff;
+    color: #0a0a0a;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.package-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.package-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.package-description {
+    color: #00ffff;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.package-price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #00ffff;
+    margin-bottom: 0.5rem;
+}
+
+.package-price small {
+    font-size: 1.2rem;
+    color: #999;
+}
+
+.package-features {
+    list-style: none;
+    margin: 2rem 0;
+}
+
+.package-features li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #333;
+    color: #e0e0e0;
+    font-size: 1rem;
+}
+
+.package-features li:before {
+    content: '✓ ';
+    color: #00ffff;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.package-setup {
+    background: #0f0f0f;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.package-setup-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: line-through;
+    color: #666;
+}
+
+.package-setup-note {
+    color: #00ffff;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.package-ideal {
+    font-style: italic;
+    color: #999;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+}
+
+.package-cta {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #00ffff 0%, #00cccc 100%);
+    color: #0a0a0a;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.package-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+}
+
+.package-note {
+    font-size: 0.85rem;
+    color: #666;
+    text-align: center;
+    margin-top: 1rem;
+}
 
 /* --- COMPARISON TABLE --- */
 .comparison-table {
-    background: #1a1a1a; border-radius: 20px; padding: 3rem;
-    margin: 3rem 0; border: 1px solid #333;
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 3rem;
+    margin: 3rem 0;
+    border: 1px solid #333;
 }
 
-.comparison-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; }
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
 
-.comparison-column h3 { color: var(--accent-cyan); font-size: 1.5rem; margin-bottom: 1.5rem; }
+
+.comparison-column h3 {
+    color: #00ffff;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
 
 .comparison-item {
-    display: flex; align-items: flex-start; margin-bottom: 1.5rem;
-    padding: 1rem; background: #0f0f0f; border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #0f0f0f;
+    border-radius: 10px;
 }
 
-.comparison-item .icon { font-size: 1.5rem; margin-right: 1rem; }
-.comparison-item .icon.check { color: var(--accent-cyan); }
-.comparison-item .icon.cross { color: #ff4444; }
+.comparison-item .icon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    min-width: 30px;
+}
+
+.comparison-item .icon.check {
+    color: #00ffff;
+}
+
+.comparison-item .icon.cross {
+    color: #ff4444;
+}
+
+.comparison-item .text {
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+.comparison-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+
+.comparison-footer p {
+    margin-bottom: 0.5rem;
+}
+
+.comparison-footer p:last-child {
+    color: #00ffff;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+}
 
 /* --- TESTIMONIALS & VIMEO --- */
-.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
-
-.video-wrapper {
-    position: relative; width: 100%; padding-bottom: 56.25%;
-    overflow: hidden; border-radius: 12px; margin-bottom: 15px; background: #000;
+.testimonials-grid {
+    display: grid;
+    /* 320px sorgt dafür, dass die Videos auf dem Desktop groß genug sind */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    
+    /* 2rem (~32px) bis 40px sind beide okay – 2rem wirkt oft harmonischer zum Rest */
+    gap: 2rem;
+    
+    /* Dieser Wert aus dem zweiten Block ist wichtig, damit die Sektion nicht an der Überschrift klebt */
+    margin-top: 3rem;
 }
 
-.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.testimonial-card {
+    /* Ein dunkles Grau (#1a1a1a) wirkt edler als reines Schwarz oder #111 */
+    background: #1a1a1a;
+    
+    /* 20px abgerundete Ecken passen besser zu den großen Video-Containern */
+    border-radius: 20px;
+    
+    /* 2rem (~32px) gibt dem Text und dem Video mehr Raum zum "Atmen" */
+    padding: 2rem;
+    
+    /* Der feine Rand lässt die Karte auf dem schwarzen Hintergrund besser hervorstechen */
+    border: 1px solid #333;
+    
+    /* Ein leichter Schatten für die Tiefenwirkung */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    
+    /* Wichtig: Damit die Karte beim Hovern (falls gewünscht) sanft reagiert */
+    transition: all 0.3s ease;
+    
+    color: white;
+}
+
+/* Optionaler Bonus: Ein dezenter Effekt, wenn man mit der Maus drüberfährt */
+.testimonial-card:hover {
+    border-color: #00ffff;
+    transform: translateY(-5px);
+}
+
+.testimonial-card:hover {
+    border-color: #00ffff;
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+}
+
+.testimonial-video {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-quote {
+    font-style: italic;
+    color: #e0e0e0;
+    /* 1.8 sorgt für ein luftiges, modernes Schriftbild */
+    line-height: 1.8;
+    /* 1.5rem (ca. 24px) statt 15px gibt dem Zitat mehr Abstand zum Namen darunter */
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+    /* "600" ist ein schöner semi-bold Wert, "bold" geht auch */
+    font-weight: 600;
+    
+    /* Das Cyan sorgt dafür, dass der Name des Kunden sofort ins Auge springt */
+    color: #00ffff;
+    
+    /* Optional: Ein kleiner Abstand nach oben, falls der Name zu nah am Zitat klebt */
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.testimonial-role {
+    /* Ein sauberes Grau, das dezent wirkt, aber gut lesbar bleibt */
+    color: #999;
+    
+    /* Die leicht verkleinerte Schriftgröße für die Info-Hierarchie */
+    font-size: 0.9rem;
+    
+    /* Sorgt dafür, dass die Rolle in einer neuen Zeile steht */
+    display: block; 
+    margin-top: 0.2rem;
+}
+
+
+.extras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.extra-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.extra-card:hover {
+    transform: translateY(-5px);
+    border-color: #00ffff;
+}
+
+.extra-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.extra-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #00ffff;
+}
+
+.extra-description {
+    color: #999;
+    line-height: 1.6;
+}
+
+.final-cta {
+    text-align: center;
+    padding: 6rem 2rem;
+    background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
+.final-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 2rem;
+    border: 4px solid #00ffff;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+    display: block;
+}
+
+.final-text {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    line-height: 1.8;
+    color: #e0e0e0;
+}
+
+.final-text p {
+    margin-bottom: 1.5rem;
+}
+
+.final-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.email-link {
+    color: #00ffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.email-link:hover {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.disclaimer {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 2rem;
+}
+
+
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 */
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.video-wrapper iframe,
+
+.video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 
 /* --- POPUP --- */
 .popup-overlay {
@@ -233,4 +646,34 @@ body {
 .popup-box input, .popup-box textarea {
     width: 100%; margin: 10px 0; padding: 12px; border-radius: 8px;
     border: none; background: #222; color: white;
+}
+
+/* --- RESPONSIVE DESKTOP (ab 768px) --- */
+@media (min-width: 768px) {
+    .reveal-section {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* --- RESPONSIVE MOBILE (bis 768px) --- */
+@media (max-width: 768px) {
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section {
+        padding: 4rem 1rem;
+    }
+
+    .packages-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .package-card.popular {
+        transform: scale(1);
+    }
+
+    .package-card.popular:hover {
+        transform: translateY(-10px);
+    }
 }
