@@ -5,10 +5,6 @@
 // IMPORTANT: Replace this URL with your Google Apps Script Web App URL
 const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
-// Video Overlay
-overlay.style.opacity = '0';
-overlay.style.pointerEvents = 'none'; // Das hier ist der "Türöffner" zum Video
-
 // ==========================================
 // MODAL FUNCTIONS
 // ==========================================
