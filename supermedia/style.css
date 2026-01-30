@@ -326,6 +326,20 @@ body {
     font-weight: 600;
 }
 
+.intro-gif {
+    /* Dehnt das Bild auf die volle Breite des Containers aus */
+    width: 100%;
+    /* Dehnt das Bild auf die volle Höhe des Containers aus */
+    height: 100%;
+    /* Das ist der Zauberbefehl: Er sorgt dafür, dass das GIF den Platz 
+       ausfüllt, ohne verzerrt zu werden (wie bei einem Hintergrundbild) */
+    object-fit: cover;
+    /* Positioniert das GIF mittig, falls es beschnitten werden muss */
+    object-position: center;
+    /* Entfernt eventuelle Standard-Abstände */
+    display: block;
+}
+
 /* ==========================================
    PACKAGES GRID (Salespage)
    ========================================== */
