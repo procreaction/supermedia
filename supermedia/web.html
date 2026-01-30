@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     
     <style>
+        /* Spezifische Styles für diese Seite, die nicht global sind */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -15,45 +16,195 @@
             justify-content: center;
             position: relative;
             background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            overflow: hidden;
         }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.6; } }
+
         .video-container {
             position: relative;
             width: 100%;
             height: 60vh;
+            max-height: 700px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0, 255, 255, 0.2);
         }
-        .intro-gif { width: 100%; height: 100%; object-fit: cover; }
+
+        .intro-gif { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .package-card.popular {
+            border-color: var(--accent-cyan);
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        }
+
+        .popup-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+            display: none; align-items: center; justify-content: center; z-index: 9999;
+        }
+
+        .popup-box {
+            background: #111; padding: 40px; border-radius: 16px;
+            max-width: 500px; width: 90%; text-align: center; position: relative;
+            border: 1px solid var(--accent-cyan);
+        }
+
+        .popup-box input, .popup-box textarea {
+            width: 100%; margin: 10px 0; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #222; color: white;
+        }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <div class="hero-content" style="text-align: center; z-index: 1;">
-            <div class="hero-text" style="animation: fadeInUp 1s ease-out forwards;">
-                <span style="display: block; margin-bottom: 1rem;">Eine professionelle Website kostet zwischen</span>
-                <span style="display: block; margin-bottom: 1rem;">CHF 5'000 und CHF 15'000.</span>
-                <span style="display: block; margin-top: 2rem;">Das sagen sie dir.</span>
-                <span style="display: block; margin-top: 2rem;">Ich sage dir <span style="color: var(--accent-cyan); font-weight: 600;">was anderes</span>.</span>
+        <div class="hero-content" style="text-align: center; z-index: 1; padding: 2rem; max-width: 900px;">
+            <div class="fade-in-up" style="animation: fadeInUp 1s ease-out forwards;">
+                <p style="font-size: clamp(1.5rem, 4vw, 2.5rem); line-height: 1.6; margin-bottom: 2rem;">
+                    <span>Eine professionelle Website kostet zwischen</span><br>
+                    <span>CHF 5'000 und CHF 15'000.</span><br><br>
+                    <span>Das sagen sie dir.</span><br>
+                    <span>Ich sage dir <span style="color: var(--accent-cyan); font-weight: 600;">was anderes</span>.</span>
+                </p>
             </div>
             <a href="#reveal" class="cta-button" style="animation: fadeInUp 1s ease-out 0.5s forwards;">Zeig mir</a>
         </div>
     </section>
 
+    <section id="reveal" class="section fade-in-up">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; align-items: center;">
+            <div class="video-container">
+                <img src="https://d1yei2z3i6k35z.cloudfront.net/2913691/66c7cdf5839be_Mat1.gif" alt="Mat Animation" class="intro-gif">
+            </div>
+            <div class="reveal-text">
+                <p><strong>Hi. Ich bin Mat.</strong></p>
+                <p>Kein Webdesigner. Kein Marketing-Guru.</p>
+                <p>Ich glaube, dass du einen besseren Auftritt <span style="color: var(--accent-cyan);">verdient hast</span>.</p>
+                <p>Ohne Mondpreise. Ohne Technik-Frust. Ohne Stillstand.</p>
+                <p style="margin-top: 2rem; font-size: 1.4rem; color: var(--accent-cyan);">Wie das geht?</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section fade-in-up">
+        <h2 class="section-title">Deine Website. Dein Tempo.</h2>
+        <div class="packages-grid">
+            <div class="package-card">
+                <h3>STARTER</h3>
+                <div style="font-size: 2.5rem; color: var(--accent-cyan); margin: 1rem 0;">CHF 69.–</div>
+                <ul style="list-style: none; padding: 0; margin-bottom: 2rem; color: var(--text-dim);">
+                    <li>✓ Responsive Webseite</li>
+                    <li>✓ Hosting & Sicherheit</li>
+                    <li>✓ Laufende Updates</li>
+                </ul>
+                <a href="#kontakt" class="cta-button" style="width: 100%; text-align: center;">Starten</a>
+            </div>
+
+            <div class="package-card popular">
+                <div style="position: absolute; top: -15px; right: 20px; background: var(--accent-cyan); color: #000; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.8rem;">BESTSELLER</div>
+                <h3>PRO</h3>
+                <div style="font-size: 2.5rem; color: var(--accent-cyan); margin: 1rem 0;">CHF 169.–</div>
+                <ul style="list-style: none; padding: 0; margin-bottom: 2rem; color: var(--text-dim);">
+                    <li>✓ UNBEGRENZTE Änderungen</li>
+                    <li>✓ 1:1 Premium Support</li>
+                    <li>✓ SEO & K.I. Tools</li>
+                </ul>
+                <a href="#kontakt" class="cta-button" style="width: 100%; text-align: center;">Das will ich</a>
+            </div>
+
+            <div class="package-card">
+                <h3>ULTIMATE</h3>
+                <div style="font-size: 2.5rem; color: var(--accent-cyan); margin: 1rem 0;">CHF 269.–</div>
+                <ul style="list-style: none; padding: 0; margin-bottom: 2rem; color: var(--text-dim);">
+                    <li>✓ Inkl. Videoclip</li>
+                    <li>✓ Social Ads Kampagne</li>
+                    <li>✓ Full Service Partner</li>
+                </ul>
+                <a href="#kontakt" class="cta-button" style="width: 100%; text-align: center;">Let's go</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section fade-in-up">
+        <h2 class="section-title">Was andere sagen</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;">
+            <div class="package-card">
+                <div class="video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/553655585?background=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
+                </div>
+                <p style="font-style: italic;">"Mein Ziel war 10 Anfragen, erreicht haben wir 40..."</p>
+                <p><strong>Stephanie Amira</strong></p>
+            </div>
+            <div class="package-card">
+                <div class="video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/699096313?background=1" frameborder="0" allow="autoplay; fullscreen"></iframe>
+                </div>
+                <p style="font-style: italic;">"CHF 20'000 Mehr Umsatz nach 4 Wochen..."</p>
+                <p><strong>Bene</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt" class="section fade-in-up" style="text-align: center;">
+        <img src="https://d1yei2z3i6k35z.cloudfront.net/2913691/66c7cdf5839be_Mat1.gif" alt="Mat" style="width: 150px; border-radius: 50%; border: 3px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <h2 class="section-title">Bist du bereit?</h2>
+        <a href="#" class="cta-button" id="openPopup">Ja, lass uns reden</a>
+    </section>
+
+    <div id="contactPopup" class="popup-overlay">
+        <div class="popup-box">
+            <span class="popup-close" style="position: absolute; top: 10px; right: 20px; cursor: pointer; font-size: 2rem;">&times;</span>
+            <h2>Lass uns sprechen 🚀</h2>
+            <form action="mailto:mat@streetwise.studio" method="post" enctype="text/plain" style="margin-top: 20px;">
+                <input type="text" name="Name" placeholder="Dein Name" required>
+                <input type="email" name="Email" placeholder="Deine Email" required>
+                <textarea name="Nachricht" rows="4" placeholder="Worum geht’s?" required></textarea>
+                <button type="submit" class="cta-button" style="width: 100%;">Absenden</button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        // Globaler Scroll-Observer für Animationen
         document.addEventListener('DOMContentLoaded', function() {
+            // Scroll Animation Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) entry.target.classList.add('visible');
                 });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.add('fade-in-up'); // Fügt die Animationsklasse hinzu
-                observer.observe(section);
-            });
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+            // Popup Logic
+            const popup = document.getElementById("contactPopup");
+            const openBtn = document.getElementById("openPopup");
+            const closeBtn = document.querySelector(".popup-close");
+
+            openBtn.addEventListener("click", (e) => { e.preventDefault(); popup.style.display = "flex"; });
+            closeBtn.addEventListener("click", () => { popup.style.display = "none"; });
+            window.onclick = (e) => { if (e.target == popup) popup.style.display = "none"; };
         });
     </script>
 </body>
