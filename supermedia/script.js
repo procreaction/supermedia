@@ -3,7 +3,8 @@
 // ==========================================
 
 // IMPORTANT: Replace this URL with your Google Apps Script Web App URL
-const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const GOOGLE_SCRIPT_URL = '
+https://script.google.com/macros/s/AKfycbxgdno7Vmvsr1FV-FY_qGh3RBB64wM8YDXYvW8a5jCRepdlVEhjHaBNqjeeUjT7cgDo/exec';
 
 // VIMEO VIDEO LOGIC - Hybrid Lösung (Background Loop + Click to Play)
 document.addEventListener('DOMContentLoaded', function() {
